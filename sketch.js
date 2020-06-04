@@ -1,3 +1,10 @@
+/*
+Note:
+  * Cannot move sliders to inside boid.js. Doing so will create x sliders were x is the number of boids.
+  * 
+
+*/
+
 function setup() {
   cHeight = 700, cWidth = 700;
   createCanvas(cHeight, cWidth);
@@ -11,7 +18,15 @@ function setup() {
   
   iface = new Iface();
   
+  vision = false;
+  button = createButton("Toggle vision")
+  button.position(10,15);
+  button.mousePressed(toggle)
   
+}
+
+function toggle(){
+   vision = !vision; 
 }
 
 function draw() {
@@ -21,11 +36,13 @@ function draw() {
   let alignmentVal = iface.getSlider1()
   let cohesionVal = iface.getSlider2()
   let seperationVal = iface.getSlider3()
-  iface.show()
+  // console.log(vision)
+  
+  
   
   for(let i = 0; i < numBoids; i++){
     boids[i].update(boids, alignmentVal, cohesionVal, seperationVal)
-    boids[i].show();
+    boids[i].show(vision);
   }
   
 }

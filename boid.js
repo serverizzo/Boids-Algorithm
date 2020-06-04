@@ -16,20 +16,29 @@ class Boid{
     this.vel = p5.Vector.random2D().setMag(1)
     this.acc = p5.Vector.random2D().setMag(1)
     
+    this.alignmentVal;
+    this.cohesionVal;
+    this.seperationVal;
+    this.scaleValue = .5
+    
     //Vision center: Note[1]
     this.showAlignmentVision = false // light blue
     this.alignmentVision = 100;
     this.showCohesionVision = false
     this.cohesionVision = 100;
+    this.showSeperationVision = false;
+      
+    this.showAlignmentVector = false
+    this.showCohesionVector = false
+    this.showSeperationVector = false
+    
+    
   }
   
   // Steer towards the average heading of local flockmates 
   alignment(boids){
     //TODO: Figure out how to make vision only in front of the boid, not a 360 view
-    if(this.showAlignmentVision){
-      fill(135,206,235, 100)
-      ellipse(this.pos.x, this.pos.y, this.alignmentVision,this.alignmentVision)
-    }    
+      
     
     let inProx = 0;
     let totalAcc = createVector(0,0)
@@ -41,17 +50,25 @@ class Boid{
     }
     if(inProx > 0){totalAcc.div(inProx);}
     // totalAcc.limit(2)
+    
+    
+    //Vision
+    if(this.showAlignmentVision){
+      fill(135,206,235, 100)
+      ellipse(this.pos.x, this.pos.y, this.alignmentVision,this.alignmentVision)
+    }  
+    
+    //Direction Vector
+    if (this.showAlignmentVector){
+      let end = totalAcc.copy().setMag(this.alignmentVal * this.scaleValue)
+      line(this.pos.x, this.pos.y, this.pos.x + end.x, this.pos.y + end.y)
+    }
     return totalAcc
   }
   
   
   // Steer twords average flockmates
   cohesion(boids){
-    
-    if (this.showCohesionVision){
-      fill(0,255,0, 100)
-      ellipse(this.pos.x, this.pos.y, this.alignmentVision,this.alignmentVision)
-    }
     
     let count = 0;
     let averagePos = createVector(0,0)
@@ -68,6 +85,18 @@ class Boid{
     }
     averagePos.sub(this.pos)
     // averagePos.limit(.5)
+    
+    if (this.showCohesionVision){
+      fill(0,255,0, 100)
+      ellipse(this.pos.x, this.pos.y, this.alignmentVision,this.alignmentVision)
+    }
+    
+    //Direction Vector
+    if(this.showCohesionVector){
+      let end = averagePos.copy().setMag(this.cohesionVal * this.scaleValue)
+      line(this.pos.x, this.pos.y, this.pos.x + end.x, this.pos.y + end.y) 
+    }
+    
     return averagePos
   }
 
@@ -90,6 +119,17 @@ class Boid{
      totalF.div(count) 
     }
     
+    if(this.showSeperationVision){
+      fill(255,160,122, 100)
+      ellipse(this.pos.x, this.pos.y, prox,prox)
+    } 
+    
+    //Show direction vector
+    if(this.showSeperationVector){
+      let end = totalF.copy().setMag(this.seperationVal * this.scaleValue)
+      line(this.pos.x, this.pos.y, this.pos.x + end.x, this.pos.y + end.y) 
+    }
+    
       
     return totalF;
   }
@@ -98,10 +138,15 @@ class Boid{
   addForces(boids, alignmentVal, cohesionVal, seperationVal){
     let totalF = createVector(0,0);
     
+    this.alignmentVal = alignmentVal
+    this.cohesionVal = cohesionVal;
+    this.seperationVal = seperationVal
+    
+    
     // Three forces governing Boid motion: Alignment, Seperation, Cohesion
-    totalF.sub(this.alignment(boids).setMag(alignmentVal))
-    totalF.sub(this.cohesion(boids).setMag(cohesionVal))
-    totalF.sub(this.seperation(boids).setMag(seperationVal))
+    totalF.sub(this.alignment(boids).setMag(this.alignmentVal))
+    totalF.sub(this.cohesion(boids).setMag(this.cohesionVal))
+    totalF.sub(this.seperation(boids).setMag(this.seperationVal))
 
     
     // picked arbitarily, play with this value
@@ -129,9 +174,11 @@ class Boid{
   }
   
   
-  show(){
+  show(showAlign){
     
-    //TODO: make boids smaller and vision smaller
+    this.showAlignmentVision = showAlign
+    
+    
     strokeWeight(2)
     stroke(200)
     fill(200,100)
