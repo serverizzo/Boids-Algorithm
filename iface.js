@@ -2,7 +2,7 @@
 Note: There was trouble moving buttons from sketch.js to iface.js. Buttons are currently in sketch.
 */
 
-class Iface{
+class SliderInterface{
   
   constructor(){
     //slider positions
@@ -10,6 +10,7 @@ class Iface{
     this.xpos = 10;
     
     //interface setup
+    
     this.alignment = createSlider(0, 255, 117);
     this.alignment.position(this.xpos, this.ypos);
     this.alignment.style('width', '80px');
@@ -39,5 +40,14 @@ class Iface{
     // console.log("seperationVal:" + this.seperation.value())
      return this.seperation.value(); 
   }
+  
 
+  showSliderNames(){
+    textSize(20)
+    fill(0, 102, 153);
+    text("Alignment",this.xpos, this.ypos + 40)
+    text("Cohesion",this.xpos + 100, this.ypos + 40)
+    text("Seperation",this.xpos + 200, this.ypos + 40)
+  }
+  
 }
