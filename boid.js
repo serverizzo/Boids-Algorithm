@@ -88,12 +88,14 @@ class Boid {
     averagePos.sub(this.pos)
     // averagePos.limit(.5)
 
-    if (this.showCohesionVision) {
-      fill(0, 255, 0, 100)
-      ellipse(this.pos.x, this.pos.y, this.alignmentVision, this.alignmentVision)
-    }
 
-    //Direction Vector
+    //  Currently Shared with alignment
+    // if (this.showCohesionVision) {
+    //   fill(0, 255, 0, 100)
+    //   ellipse(this.pos.x, this.pos.y, this.alignmentVision, this.alignmentVision)
+    // }
+
+    // Direction Vector
     if (this.showCohesionVector) {
       let end = averagePos.copy().setMag(this.cohesionVal * this.scaleValue)
       line(this.pos.x, this.pos.y, this.pos.x + end.x, this.pos.y + end.y)
