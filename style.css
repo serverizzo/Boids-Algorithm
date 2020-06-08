@@ -1,8 +1,4 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
+
 
 canvas {
   display: block;
@@ -12,5 +8,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: #5c729e;
+  font-size: 200%;
+}
+
+p {
+  padding: 0 100px 100px 100px;
+}
+
+.about {
+  background-color: brown;
 
 }

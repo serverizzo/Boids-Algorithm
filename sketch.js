@@ -6,7 +6,7 @@ Note:
 */
 
 function setup() {
-  cHeight = 700, cWidth = screen.width;
+  cHeight = screen.height - 300, cWidth = screen.width;
   createCanvas(cWidth, cHeight);
 
   // boids
@@ -31,7 +31,16 @@ function setup() {
   Prox.mousePressed(toggleSeperation);
 
   //about:
+  // createDiv(
+  //   "hello"
+  //   // <p> here is the stuff </p>
+  //   // "hello"
+  //   // createElement("h1", "Boids Algorithm"),
+  //   // createP("Boids (short for bird-iod object) algorithm was developed by Craig Reynolds in 1986 to simulate group movements e.g. bird flight, schools of fish. Though the simulation may seem complex, Boids algorithm works on three simple rules.")
+  // ).addClass("about")
+  createElement("h1", "Boids Algorithm"),
   createP("Boids (short for bird-iod object) algorithm was developed by Craig Reynolds in 1986 to simulate group movements e.g. bird flight, schools of fish. Though the simulation may seem complex, Boids algorithm works on three simple rules.")
+
 
 
 }
