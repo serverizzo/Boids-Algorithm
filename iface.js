@@ -45,9 +45,9 @@ class SliderInterface{
   showSliderNames(){
     textSize(20)
     fill(0, 102, 153);
-    text("Alignment",this.xpos, this.ypos + 40)
-    text("Cohesion",this.xpos + 100, this.ypos + 40)
-    text("Seperation",this.xpos + 200, this.ypos + 40)
+    text("Alignment",this.xpos+10, this.ypos + 40)
+    text("Cohesion",this.xpos + 110, this.ypos + 40)
+    text("Seperation",this.xpos + 210, this.ypos + 40)
   }
   
 }

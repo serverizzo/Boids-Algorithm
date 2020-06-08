@@ -184,10 +184,16 @@ class Boid {
   }
 
 
-  show(showAlign, showSeperation) {
+  show(showAlign, showSeperation, showAlignmentVector, showCohesionVector, showSeperationVector) {
 
+    // Vision Buttons
     this.showAlignmentVision = showAlign
     this.showSeperationVision = showSeperation
+
+    //  Vector buttons
+    this.showAlignmentVector = showAlignmentVector
+    this.showCohesionVector = showCohesionVector
+    this.showSeperationVector = showSeperationVector
 
     strokeWeight(2)
     stroke(200)
