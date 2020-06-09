@@ -63,6 +63,8 @@ class Boid {
     //Direction Vector
     if (this.showAlignmentVector) {
       let end = totalAcc.copy().setMag(this.alignmentVal * this.scaleValue)
+
+      stroke("#8c56ff")
       line(this.pos.x, this.pos.y, this.pos.x + end.x, this.pos.y + end.y)
     }
     return totalAcc
@@ -98,6 +100,7 @@ class Boid {
     // Direction Vector
     if (this.showCohesionVector) {
       let end = averagePos.copy().setMag(this.cohesionVal * this.scaleValue)
+      stroke(0, 255, 0)
       line(this.pos.x, this.pos.y, this.pos.x + end.x, this.pos.y + end.y)
     }
 
@@ -125,12 +128,14 @@ class Boid {
 
     if (this.showSeperationVision) {
       fill(255, 160, 122, 100)
+      stroke(200)
       ellipse(this.pos.x, this.pos.y, prox, prox)
     }
 
     //Show direction vector
     if (this.showSeperationVector) {
       let end = totalF.copy().setMag(this.seperationVal * this.scaleValue)
+      stroke("#f4ff21")
       line(this.pos.x, this.pos.y, this.pos.x + end.x, this.pos.y + end.y)
     }
 

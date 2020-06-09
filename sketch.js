@@ -44,9 +44,10 @@ function setup() {
   seperationVector.position(210, 90)
   seperationVector.mousePressed(toggleSeperationVector);
 
-  // More info
-  createElement("h1", "Boids Algorithm"),
-    createP("Boids (short for bird-iod object) algorithm was developed by Craig Reynolds in 1986 to simulate group movements e.g. bird flight, schools of fish. Though the simulation may seem complex, Boids algorithm works on three simple rules.")
+  // Write up
+  createElement("h1", "Boids Algorithm")
+  createP("Boids (short for bird-iod object) algorithm was developed by Craig Reynolds in 1986 to simulate group movements e.g. bird flight, schools of fish. Though the simulation may seem complex, Boids algorithm works on three simple rules.")
+
 
 }
 
